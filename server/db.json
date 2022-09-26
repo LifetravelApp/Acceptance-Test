@@ -1,3 +1,12 @@
 {
-  "travelers": []
+  "travelers": [
+    {
+      "firstName": "Patrick",
+      "age": 21,
+      "lastName": "Cuentas",
+      "email": "patrick_cuentas@hotmail.com",
+      "phone": 123456789,
+      "id": 1
+    }
+  ]
 }

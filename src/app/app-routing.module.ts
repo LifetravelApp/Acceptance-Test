@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { TravelersComponent } from './travelers/pages/travelers/travelers.component';
 
 const routes: Routes = [
-	{ path: '', redirectTo: '/', pathMatch: 'full' },
+	{ path: 'travelers', component: TravelersComponent },
+	{ path: '', redirectTo: 'travelers', pathMatch: 'full' },
 ];
 
 @NgModule({

@@ -7,6 +7,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { AppComponent } from './app.component';
+import { TravelersComponent } from './travelers/pages/travelers/travelers.component';
+
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
@@ -19,6 +21,7 @@ import { MatToolbarModule } from "@angular/material/toolbar"
 @NgModule({
 	declarations: [
 		AppComponent,
+		TravelersComponent
 	],
 	imports: [
 		BrowserModule,
