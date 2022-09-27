@@ -16,12 +16,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from "@angular/material/input"
 import { MatIconModule } from "@angular/material/icon"
-import { MatToolbarModule } from "@angular/material/toolbar"
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { AgenciesComponent } from './agencies/pages/agencies/agencies.component'
 
 @NgModule({
 	declarations: [
 		AppComponent,
-		TravelersComponent
+		TravelersComponent,
+  AgenciesComponent
 	],
 	imports: [
 		BrowserModule,

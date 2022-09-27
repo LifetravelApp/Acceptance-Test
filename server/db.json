@@ -8,5 +8,16 @@
       "phone": 123456789,
       "id": 1
     }
+  ],
+  "agencies": [
+    {
+      "name": "Peru SAC",
+      "ruc": 12547895486,
+      "location": "Av. Collabamba 78",
+      "email": "perusac@hotmail.com",
+      "phone": 987456321,
+      "id": 1
+    }
   ]
+
 }
