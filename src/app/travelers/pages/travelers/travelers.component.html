@@ -1,8 +1,6 @@
 <div class="table-wrapper">
   <h1>Travelers Catalogue</h1>
-
   <h2>{{ isEditMode ? "Edit Traveler" : "Add new Traveler" }}</h2>
-
   <form (submit)="onSubmit()" #travelerForm="ngForm">
     <div class="grid grid-cols-2 gap-x-8">
       <mat-form-field>
@@ -53,7 +51,6 @@
         />
       </mat-form-field>
     </div>
-
     <div class="text-center my-8">
       <ng-container *ngIf="isEditMode; else elseTemplate">
         <button mat-button color="primary">Update</button>
@@ -64,7 +61,6 @@
       </ng-template>
     </div>
   </form>
-
   <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>#Id</th>
@@ -110,11 +106,7 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr
-      mat-row
-      *matRowDef="let row; columns: displayedColumns"
-      [ngClass]="{ 'editable-row': travelerData.id === row.id }"
-    ></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns" [ngClass]="{ 'editable-row': travelerData.id === row.id }"></tr>
   </table>
   <mat-paginator
     [pageSize]="5"

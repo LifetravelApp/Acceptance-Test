@@ -18,12 +18,14 @@ import { MatInputModule } from "@angular/material/input"
 import { MatIconModule } from "@angular/material/icon"
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { AgenciesComponent } from './agencies/pages/agencies/agencies.component'
+import { PlanesComponent } from './planes/pages/planes/planes.component'
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		TravelersComponent,
-  AgenciesComponent
+		AgenciesComponent,
+		PlanesComponent
 	],
 	imports: [
 		BrowserModule,

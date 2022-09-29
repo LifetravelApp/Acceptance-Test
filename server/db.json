@@ -7,6 +7,27 @@
       "email": "patrick_cuentas@hotmail.com",
       "phone": 123456789,
       "id": 1
+    },
+    {
+      "firstName": "FEF",
+      "lastName": "EFEF",
+      "age": 1,
+      "email": "FEF",
+      "phone": 3,
+      "id": 2
+    }
+  ],
+  "planes": [
+    {
+      "name": "Costa Azul",
+      "description": "Tour Playero",
+      "service": "Grupo",
+      "nameCity": "Piura",
+      "nameCountry": "Peru",
+      "startDate": 15,
+      "endDate": 18,
+      "price": 150,
+      "id": 2
     }
   ],
   "agencies": [
