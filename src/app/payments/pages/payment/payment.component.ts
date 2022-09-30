@@ -6,7 +6,6 @@ import {MatSort} from "@angular/material/sort";
 import * as _ from "lodash";
 import {Payment} from "../../model/payment";
 import{PaymentsService} from "../../services/payments.service";
-import {Plan} from "../../../planes/model/plan";
 
 @Component({
   selector: 'app-payment',
@@ -18,7 +17,7 @@ export class PaymentComponent implements OnInit ,AfterViewInit{
   dataSource:MatTableDataSource<any>;
   displayedColumns: string[]=['id','description','discount','actions'];
   @ViewChild('planForm', { static: false })
-  planForm!: NgForm;
+  paymentForm!: NgForm;
 
   @ViewChild(MatPaginator, { static: true })
   paginator!: MatPaginator;
@@ -28,7 +27,7 @@ export class PaymentComponent implements OnInit ,AfterViewInit{
 
   isEditMode = false;
   constructor(private paymentsService: PaymentsService) {
-    this.paymentData={}as Payment;
+    this.paymentData= {} as Payment;
     this.dataSource=new MatTableDataSource<any>();
   }
 
@@ -55,12 +54,12 @@ export class PaymentComponent implements OnInit ,AfterViewInit{
 
   cancelEdit() {
     this.isEditMode = false;
-    this.planForm.resetForm();
+    this.paymentForm.resetForm();
   }
 
   deleteItem(id: number) {
     this.paymentsService.delete(id).subscribe(() => {
-      this.dataSource.data = this.dataSource.data.filter((o: Plan) => {
+      this.dataSource.data = this.dataSource.data.filter((o: Payment) => {
         return o.id !== id ? o : false;
       });
     });
@@ -75,7 +74,7 @@ export class PaymentComponent implements OnInit ,AfterViewInit{
   }
   updatePayment() {
     this.paymentsService.update(this.paymentData.id, this.paymentData).subscribe((response: any) => {
-      this.dataSource.data = this.dataSource.data.map((o: Plan) => {
+      this.dataSource.data = this.dataSource.data.map((o: Payment) => {
         if (o.id === response.id) {
           o = response;
         }
@@ -84,7 +83,7 @@ export class PaymentComponent implements OnInit ,AfterViewInit{
     });
   }
   onSubmit() {
-    if (this.planForm.form.valid) {
+    if (this.paymentForm.form.valid) {
       console.log('valid');
       if (this.isEditMode) {
         console.log('about to update');

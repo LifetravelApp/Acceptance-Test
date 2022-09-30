@@ -1,7 +1,7 @@
 <div class="table-wrapper">
   <h1>Payments Catalogue</h1>
   <h2>{{ isEditMode ? "Edit Payment" : "Add new Payment" }}</h2>
-  <form (submit)="onSubmit()" #planForm="ngForm">
+  <form (submit)="onSubmit()" #paymentForm="ngForm">
     <div class="grid grid-cols-2 gap-x-8">
       <mat-form-field>
         <input

@@ -17,11 +17,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from "@angular/material/input"
 import { MatIconModule } from "@angular/material/icon"
 import { MatToolbarModule } from "@angular/material/toolbar"
+import { PaymentComponent } from './payments/pages/payment/payment.component';
 
 @NgModule({
 	declarations: [
 		AppComponent,
-		TravelersComponent
+		TravelersComponent,
+		PaymentComponent
 	],
 	imports: [
 		BrowserModule,
