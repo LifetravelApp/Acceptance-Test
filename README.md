@@ -1,27 +1,8 @@
-# LearningCenter
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.3.
+#README FOR LIFETRAVEL
 
-## Development server
+Repositorio para el frontend para LifeTravel App para el curso Aplicaciones Open Source SI729 - UPC
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+LifeTravel tiene como objetivo desarrollar una aplicación que le sugiera al usuario destinos según sus preferencias, además de organizar un programa de viaje acorde con su presupuesto, sugiriendo las temporadas adecuadas y los paquetes más atractivos, brindándole un servicio completo y eficiente.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Esta propuesta se pensó con la finalidad de promover el turismo y apoyar a las pequeñas agencias de viajes. Le brindamos al usuario una gran experiencia con nuestra aplicación, para que pueda encontrar los destinos más atractivos para él, puesto que en algunas ocasiones es muy difícil escoger un destino entre las tantas opciones que hay, por lo que nuestra aplicación facilitará esta decisión al usuario. Además, permitirá a las agencias de viaje poder elaborar sus propios paquetes y ofrecerlos con facilidad dentro de la aplicación.
