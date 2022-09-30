@@ -27,7 +27,15 @@
       "startDate": "2022-09-04T05:00:00.000Z",
       "endDate": "2022-09-14T05:00:00.000Z",
       "price": 150,
-      "id": 2
+      "id": 2,
+      "agency": {
+        "name": "Lifetravel",
+        "location": "Av. Jiron Union",
+        "ruc": 1134231231,
+        "email": "patrick_cuentas@hotmail.com",
+        "phone": 124124124124,
+        "id": 2
+      }
     }
   ],
   "agencies": [
@@ -38,6 +46,14 @@
       "email": "perusac@hotmail.com",
       "phone": 987456321,
       "id": 1
+    },
+    {
+      "name": "Lifetravel",
+      "location": "Av. Jiron Union",
+      "ruc": 1134231231,
+      "email": "patrick_cuentas@hotmail.com",
+      "phone": 124124124124,
+      "id": 2
     }
   ]
 }
