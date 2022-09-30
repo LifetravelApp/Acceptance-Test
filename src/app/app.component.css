@@ -10,3 +10,8 @@
   text-align: center;
   width: 100%;
 }
+
+.black-container {
+  background-color: #161d2f;
+  color: white;
+}

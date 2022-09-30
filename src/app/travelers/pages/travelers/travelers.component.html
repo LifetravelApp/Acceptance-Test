@@ -106,7 +106,11 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns" [ngClass]="{ 'editable-row': travelerData.id === row.id }"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      [ngClass]="{ 'editable-row': travelerData.id === row.id }"
+    ></tr>
   </table>
   <mat-paginator
     [pageSize]="5"
