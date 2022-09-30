@@ -1,0 +1,43 @@
+{
+  "travelers": [
+    {
+      "firstName": "Patrick",
+      "age": 21,
+      "lastName": "Cuentas",
+      "email": "patrick_cuentas@hotmail.com",
+      "phone": 123456789,
+      "id": 1
+    },
+    {
+      "firstName": "FEF",
+      "lastName": "EFEF",
+      "age": 1,
+      "email": "FEF",
+      "phone": 3,
+      "id": 2
+    }
+  ],
+  "planes": [
+    {
+      "name": "Costa Azul",
+      "description": "Tour Playero",
+      "service": "html",
+      "nameCity": "Piura",
+      "nameCountry": "Peru",
+      "startDate": "2022-09-04T05:00:00.000Z",
+      "endDate": "2022-09-14T05:00:00.000Z",
+      "price": 150,
+      "id": 2
+    }
+  ],
+  "agencies": [
+    {
+      "name": "Peru SAC",
+      "ruc": 12547895486,
+      "location": "Av. Collabamba 78",
+      "email": "perusac@hotmail.com",
+      "phone": 987456321,
+      "id": 1
+    }
+  ]
+}
