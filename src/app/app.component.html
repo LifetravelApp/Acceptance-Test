@@ -1,11 +1,25 @@
-<mat-toolbar color="primary">
-  <h1>Lifetravel Dashboard</h1>
-  <div class="mat-spacer"></div>
-  <a mat-button [routerLink]="'/travelers'">Travelers</a>
-  <a mat-button [routerLink]="'/agencies'">Agency</a>
-  <a mat-button [routerLink]="'/planes'">Planes</a>
-  <a mat-button [routerLink]="'/payments'">Payments</a>
-
-  <!-- App Options -->
-</mat-toolbar>
-<router-outlet></router-outlet>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav>
+    <mat-nav-list>
+      <a
+        *ngFor="let route of routes"
+        mat-list-item
+        [routerLink]="route.path"
+        (click)="sidenav.toggle()"
+      >
+        {{ route.path.charAt(0).toUpperCase() + route.path.slice(1) }}</a
+      >
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div style="height: 100vh">
+      <mat-toolbar color="primary">
+        <button mat-icon-button aria-label="Menu" (click)="sidenav.open()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <h1 id="title">LifeTravel Dashboard</h1>
+      </mat-toolbar>
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

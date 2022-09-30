@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -16,22 +15,33 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from "@angular/material/input"
 import { MatIconModule } from "@angular/material/icon"
-import { AgenciesComponent } from './agencies/pages/agencies/agencies.component'
-import { PlanesComponent } from './planes/pages/planes/planes.component'
 import { MatToolbarModule } from "@angular/material/toolbar"
+import { MatSidenavModule } from "@angular/material/sidenav"
+import { MatListModule } from "@angular/material/list"
+import { RouterModule, Routes } from '@angular/router';
 import { PaymentComponent } from './payments/pages/payment/payment.component';
+import { AgenciesComponent } from './agencies/pages/agencies/agencies.component';
+import { PlanesComponent } from './planes/pages/planes/planes.component';
+
+const routes: Routes = [
+	{ path: 'travelers', component: TravelersComponent },
+	{ path: 'payments', component: PaymentComponent },
+	{ path: '', redirectTo: 'travelers', pathMatch: 'full' },
+	{ path: 'agencies', component: AgenciesComponent },
+	{ path: 'planes', component: PlanesComponent }
+];
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		TravelersComponent,
-		AgenciesComponent,
+		PaymentComponent,
 		PlanesComponent,
-		PaymentComponent
+		AgenciesComponent
 	],
 	imports: [
 		BrowserModule,
-		AppRoutingModule,
+		RouterModule.forRoot(routes),
 		BrowserAnimationsModule,
 		HttpClientModule,
 		FormsModule,
@@ -43,7 +53,9 @@ import { PaymentComponent } from './payments/pages/payment/payment.component';
 		MatFormFieldModule,
 		MatToolbarModule,
 		MatIconModule,
-		MatSortModule
+		MatSortModule,
+		MatSidenavModule,
+		MatListModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]
