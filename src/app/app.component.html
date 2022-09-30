@@ -7,7 +7,7 @@
         [routerLink]="route.path"
         (click)="sidenav.toggle()"
       >
-        {{ route.path.charAt(0).toUpperCase() + route.path.slice(1) }}</a
+        {{ capitalize(route?.path ?? "") }}</a
       >
     </mat-nav-list>
   </mat-sidenav>

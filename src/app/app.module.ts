@@ -18,18 +18,10 @@ import { MatIconModule } from "@angular/material/icon"
 import { MatToolbarModule } from "@angular/material/toolbar"
 import { MatSidenavModule } from "@angular/material/sidenav"
 import { MatListModule } from "@angular/material/list"
-import { RouterModule, Routes } from '@angular/router';
 import { PaymentComponent } from './payments/pages/payment/payment.component';
 import { AgenciesComponent } from './agencies/pages/agencies/agencies.component';
 import { PlanesComponent } from './planes/pages/planes/planes.component';
-
-const routes: Routes = [
-	{ path: 'travelers', component: TravelersComponent },
-	{ path: 'payments', component: PaymentComponent },
-	{ path: '', redirectTo: 'travelers', pathMatch: 'full' },
-	{ path: 'agencies', component: AgenciesComponent },
-	{ path: 'planes', component: PlanesComponent }
-];
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
 	declarations: [
@@ -41,7 +33,7 @@ const routes: Routes = [
 	],
 	imports: [
 		BrowserModule,
-		RouterModule.forRoot(routes),
+		AppRoutingModule,
 		BrowserAnimationsModule,
 		HttpClientModule,
 		FormsModule,
