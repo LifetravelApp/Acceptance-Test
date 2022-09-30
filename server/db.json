@@ -21,11 +21,11 @@
     {
       "name": "Costa Azul",
       "description": "Tour Playero",
-      "service": "Grupo",
+      "service": "html",
       "nameCity": "Piura",
       "nameCountry": "Peru",
-      "startDate": 15,
-      "endDate": 18,
+      "startDate": "2022-09-04T05:00:00.000Z",
+      "endDate": "2022-09-14T05:00:00.000Z",
       "price": 150,
       "id": 2
     }
@@ -40,5 +40,4 @@
       "id": 1
     }
   ]
-
 }

@@ -18,10 +18,15 @@ import { MatIconModule } from "@angular/material/icon"
 import { MatToolbarModule } from "@angular/material/toolbar"
 import { MatSidenavModule } from "@angular/material/sidenav"
 import { MatListModule } from "@angular/material/list"
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+
+
 import { PaymentComponent } from './payments/pages/payment/payment.component';
 import { AgenciesComponent } from './agencies/pages/agencies/agencies.component';
 import { PlanesComponent } from './planes/pages/planes/planes.component';
 import { AppRoutingModule } from './app-routing.module';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
 	declarations: [
@@ -37,6 +42,7 @@ import { AppRoutingModule } from './app-routing.module';
 		BrowserAnimationsModule,
 		HttpClientModule,
 		FormsModule,
+		MatNativeDateModule,
 		ReactiveFormsModule,
 		MatTableModule,
 		MatPaginatorModule,
@@ -47,7 +53,9 @@ import { AppRoutingModule } from './app-routing.module';
 		MatIconModule,
 		MatSortModule,
 		MatSidenavModule,
-		MatListModule
+		MatListModule,
+		MatDatepickerModule,
+		MatSelectModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent]

@@ -2,7 +2,7 @@ export interface Plan {
   id:number;
   name:string;
   description:string;
-  service:string;
+  agency:string;
   nameCity:string;
   nameCountry:string;
   startDate:number;
