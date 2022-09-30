@@ -16,16 +16,18 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from "@angular/material/input"
 import { MatIconModule } from "@angular/material/icon"
-import { MatToolbarModule } from "@angular/material/toolbar";
 import { AgenciesComponent } from './agencies/pages/agencies/agencies.component'
 import { PlanesComponent } from './planes/pages/planes/planes.component'
+import { MatToolbarModule } from "@angular/material/toolbar"
+import { PaymentComponent } from './payments/pages/payment/payment.component';
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		TravelersComponent,
 		AgenciesComponent,
-		PlanesComponent
+		PlanesComponent,
+		PaymentComponent
 	],
 	imports: [
 		BrowserModule,
