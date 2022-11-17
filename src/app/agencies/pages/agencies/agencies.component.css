@@ -6,6 +6,8 @@ table {
   width: 100%;
 }
 
+input {color: black}
+
 tr.editable-row {
   background-color: lightskyblue;
 }
