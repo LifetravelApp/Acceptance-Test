@@ -6,29 +6,10 @@
       <mat-form-field>
         <input
           matInput
-          placeholder="First Name"
-          name="firstName"
+          placeholder="Name"
+          name="name"
           required
-          [(ngModel)]="travelerData.firstName"
-        />
-      </mat-form-field>
-      <mat-form-field>
-        <input
-          matInput
-          placeholder="Last Name"
-          name="lastName"
-          required
-          [(ngModel)]="travelerData.lastName"
-        />
-      </mat-form-field>
-      <mat-form-field>
-        <input
-          type="number"
-          matInput
-          placeholder="Age"
-          name="age"
-          required
-          [(ngModel)]="travelerData.age"
+          [(ngModel)]="travelerData.name"
         />
       </mat-form-field>
       <mat-form-field>
@@ -53,11 +34,13 @@
     </div>
     <div class="text-center my-8">
       <ng-container *ngIf="isEditMode; else elseTemplate">
-        <button mat-button color="primary">Update</button>
-        <button mat-button color="warn" (click)="cancelEdit()">Cancel</button>
+        <div class="flex flex-column gap-2 justify-center">
+          <button mat-button class="bg-[#ee21ba] text-[#ffffff] ">Update</button>
+          <button mat-button class="bg-[#ee21ba] text-[#ffffff]" (click)="cancelEdit()">Cancel</button>
+        </div>
       </ng-container>
       <ng-template #elseTemplate>
-        <button mat-button color="primary">Add</button>
+        <button mat-button class="bg-[#ee21ba] text-[#ffffff]">Add</button>
       </ng-template>
     </div>
   </form>
@@ -67,19 +50,9 @@
       <td mat-cell *matCellDef="let element">{{ element.id }}</td>
     </ng-container>
 
-    <ng-container matColumnDef="firstName">
+    <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-      <td mat-cell *matCellDef="let element">{{ element.firstName }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="lastName">
-      <th mat-header-cell *matHeaderCellDef>Last Name</th>
-      <td mat-cell *matCellDef="let element">{{ element.lastName }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="age">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Age</th>
-      <td mat-cell *matCellDef="let element">{{ element.age }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
     </ng-container>
 
     <ng-container matColumnDef="email">
@@ -90,6 +63,13 @@
     <ng-container matColumnDef="phone">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone</th>
       <td mat-cell *matCellDef="let element">{{ element.phone }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="reviews">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Reviews</th>
+      <td mat-cell *matCellDef="let element">
+        <app-confirm-dialog [data]="element.reviews" type="traveler"></app-confirm-dialog>
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="actions">
@@ -106,7 +86,11 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns" [ngClass]="{ 'editable-row': travelerData.id === row.id }"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      [ngClass]="{ 'editable-row': travelerData.id === row.id }"
+    ></tr>
   </table>
   <mat-paginator
     [pageSize]="5"

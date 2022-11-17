@@ -18,7 +18,7 @@ export class PlanesComponent implements OnInit, AfterViewInit {
 	agencies: any = []
 	planData: Plan;
 	dataSource: MatTableDataSource<any>;
-	displayedColumns: string[] = ['id', 'name', 'description', 'agency', 'nameCity', 'nameCountry', 'startDate', 'endDate', 'price', 'actions'];
+	displayedColumns: string[] = ['id', 'name', 'description',"duration", "capacity","thumbnail","agencyId","extras",'actions'];
 
 	@ViewChild('planForm', { static: false })
 	planForm!: NgForm;
@@ -40,7 +40,7 @@ export class PlanesComponent implements OnInit, AfterViewInit {
 		this.dataSource.paginator = this.paginator;
 		this.getAllPlanes();
 		this.agenciesService.getAll().subscribe((response: any) => {
-			this.agencies = response;
+			this.agencies = response.content;
 		})
 	}
 
@@ -54,9 +54,8 @@ export class PlanesComponent implements OnInit, AfterViewInit {
 
 	getAllPlanes() {
 		this.planesService.getAll().subscribe((response: any) => {
-			this.dataSource.data = response;
-		}
-		);
+			this.dataSource.data = response.content;
+		});
 	}
 
 	editItem(element: Plan) {

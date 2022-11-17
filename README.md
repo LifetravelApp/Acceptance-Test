@@ -1,4 +1,3 @@
-
 #README FOR LIFETRAVEL
 
 Repositorio para el frontend para LifeTravel App para el curso Aplicaciones Open Source SI729 - UPC

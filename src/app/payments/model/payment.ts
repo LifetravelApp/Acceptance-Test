@@ -1,5 +1,6 @@
 export interface Payment {
-  id:number;
-  description:string;
-  discount: number;
+	id: number;
+	plan: string;
+	description: string;
+	discount: number;
 }

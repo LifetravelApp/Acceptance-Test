@@ -15,7 +15,7 @@ export class TravelersComponent implements OnInit, AfterViewInit {
 
 	travelerData: Traveler;
 	dataSource: MatTableDataSource<any>;
-	displayedColumns: string[] = ['id', 'firstName', 'lastName', 'age', 'email', 'phone', 'actions'];
+	displayedColumns: string[] = ['id', 'name', 'email', 'phone','reviews', 'actions'];
 
 	@ViewChild('travelerForm', { static: false })
 	travelerForm!: NgForm;
@@ -35,16 +35,16 @@ export class TravelersComponent implements OnInit, AfterViewInit {
 
 	ngOnInit(): void {
 		this.dataSource.paginator = this.paginator;
-		this.getAllStudents();
+		this.getAllTravelers();
 	}
 
 	ngAfterViewInit() {
 		this.dataSource.sort = this.sort;
 	}
 
-	getAllStudents() {
+	getAllTravelers() {
 		this.travelersService.getAll().subscribe((response: any) => {
-			this.dataSource.data = response;
+			this.dataSource.data = response.content;
 		});
 	}
 
@@ -67,15 +67,14 @@ export class TravelersComponent implements OnInit, AfterViewInit {
 		console.log(this.dataSource.data);
 	}
 
-	addStudent() {
-		this.travelerData.id = 0;
+	addTraveler() {
 		this.travelersService.create(this.travelerData).subscribe((response: any) => {
 			this.dataSource.data.push({ ...response });
 			this.dataSource.data = this.dataSource.data.map((o: any) => { return o; });
 		});
 	}
 
-	updateStudent() {
+	updateTraveler() {
 		this.travelersService.update(this.travelerData.id, this.travelerData).subscribe((response: any) => {
 			this.dataSource.data = this.dataSource.data.map((o: Traveler) => {
 				if (o.id === response.id) {
@@ -91,10 +90,10 @@ export class TravelersComponent implements OnInit, AfterViewInit {
 			console.log('valid');
 			if (this.isEditMode) {
 				console.log('about to update');
-				this.updateStudent();
+				this.updateTraveler();
 			} else {
 				console.log('about to add');
-				this.addStudent();
+				this.addTraveler();
 			}
 			this.cancelEdit();
 		} else {

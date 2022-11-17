@@ -9,10 +9,11 @@ import {Plan} from "../model/plan";
 })
 export class PlanesService {
 
-  basePath ="http://localhost:3000/planes"
+  basePath ="http://localhost:8080/api/v1/plans"
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
     })
   }
   constructor(private http: HttpClient) { }
@@ -30,7 +31,24 @@ export class PlanesService {
     return throwError(() => new Error('Something happened with request, please try again later'));
   }
   create(item: any): Observable<Plan> {
-    return this.http.post<Plan>(this.basePath, JSON.stringify(item), this.httpOptions)
+
+    const mappedItem = {
+      ...item,
+      agency: {
+        id: item.agencyId
+      },
+      accommodation: {
+        id: item.accommodationId
+      },
+      transport: {
+        id: item.transportId
+      },
+      tour: {
+        id: item.tourId
+      }
+    }
+
+    return this.http.post<Plan>(this.basePath, JSON.stringify(mappedItem), this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError));
@@ -54,6 +72,7 @@ export class PlanesService {
         catchError(this.handleError));
   }
   delete(id: any) {
+    console.log(id)
     return this.http.delete(`${this.basePath}/${id}`, this.httpOptions)
       .pipe(
         retry(2),

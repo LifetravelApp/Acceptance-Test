@@ -13,3 +13,9 @@ tr.editable-row {
 mat-form-field.mat-form-field {
   font-size: 16px;
 }
+
+form {
+  background-color: white;
+  padding: 15px 25px;
+  border-radius: 15px 15px 0 0;
+}

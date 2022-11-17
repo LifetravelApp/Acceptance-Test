@@ -1,8 +1,10 @@
-import { User } from "src/shared/user";
-
-
-export interface Agency extends User {
+export interface Agency{
+  id: number | string;
   name: string;
-  location: string;
+  email: string;
   ruc: number;
+  transports: any[];
+  accommodations: any[];
+  tours: any[];
+  plans: any[];
 }

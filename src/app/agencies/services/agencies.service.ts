@@ -9,11 +9,12 @@ import { Agency } from "../model/agency";
 export class AgenciesService {
 
   // Agency Endpoint
-  basePath = 'http://localhost:3000/agencies';
+  basePath = 'http://localhost:8080/api/v1/agencies';
 
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
     })
   }
   constructor(private http: HttpClient) { }
