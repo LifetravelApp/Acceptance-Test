@@ -3,10 +3,10 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-transport-dialog.html',
-  templateUrl: 'plan-dialog.component.html',
-  styleUrls: ['./plan-dialog.component.css']
+  templateUrl: 'review-dialog.component.html',
+  styleUrls: ['./review-dialog.component.css']
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
-export class PlanDialogComponent {
-  constructor(public dialogRef: MatDialogRef<PlanDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {}
+export class ReviewDialogComponent {
+  constructor(public dialogRef: MatDialogRef<ReviewDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {}
 }

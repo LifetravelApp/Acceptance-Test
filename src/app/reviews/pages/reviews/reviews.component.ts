@@ -6,6 +6,8 @@ import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { ReviewsService } from '../../services/reviews.service';
 import * as _ from "lodash";
+import {TravelersService} from "../../../travelers/services/travelers.service";
+import {PlanesService} from "../../../planes/services/planes.service";
 @Component({
   selector: 'app-reviews',
   templateUrl: './reviews.component.html',
@@ -13,9 +15,12 @@ import * as _ from "lodash";
 })
 export class ReviewsComponent implements OnInit, AfterViewInit {
 
+  travelers:any=[]
+  planes: any =[]
+
   reviewData: Review;
   dataSource: MatTableDataSource<any>;
-  displayedColumns: string[] = ['id',"comment","rating","date" ,"actions"];
+  displayedColumns: string[] = ['id',"comment","rating","date","extras" ,"actions"];
 
   @ViewChild('reviewForm', { static: false })
   reviewForm!: NgForm;
@@ -28,7 +33,7 @@ export class ReviewsComponent implements OnInit, AfterViewInit {
 
   isEditMode = false;
 
-  constructor(private reviewsService: ReviewsService) {
+  constructor(private reviewsService: ReviewsService, private planesService: PlanesService, private travelersService: TravelersService) {
     this.reviewData = {} as Review;
     this.dataSource = new MatTableDataSource<any>();
   }
@@ -36,6 +41,14 @@ export class ReviewsComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.dataSource.paginator = this.paginator;
     this.getAllReviews();
+    // traer los planes
+    this.planesService.getAll().subscribe((response: any) => {
+      this.planes = response.content;
+    })
+    // traer los travelers
+    this.travelersService.getAll().subscribe((response: any) => {
+      this.travelers = response.content;
+    })
   }
 
   ngAfterViewInit() {
@@ -44,8 +57,25 @@ export class ReviewsComponent implements OnInit, AfterViewInit {
 
   getAllReviews() {
     this.reviewsService.getAll().subscribe((response: any) => {
-      console.table(response.content)
-      this.dataSource.data = response.content;
+
+      const reviews: any = response.content.map((review: any) => {
+
+        const reviewMapped = {
+          ...review
+        }
+
+        this.planesService.getById(review.planId).subscribe((response: any) => {
+          reviewMapped.planId = response;
+        })
+        this.travelersService.getById(review.travelerId).subscribe((response: any) => {
+          reviewMapped.travelerId = response;
+        })
+
+        return reviewMapped;
+
+      })
+      this.dataSource.data = reviews;
+
     });
   }
 

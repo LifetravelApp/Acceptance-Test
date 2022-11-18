@@ -3,7 +3,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-transport-dialog.html',
-  templateUrl: 'traveler-dialog.html',
+  templateUrl: 'traveler-dialog.component.html',
   styleUrls: ['./traveler-dialog.component.css']
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix

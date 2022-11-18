@@ -3,62 +3,57 @@
 </div>
 <h1 mat-dialog-title>Extra Agency Information</h1>
 <div mat-dialog-content>
-  <!--
-  La idea es colocar tabs para mostrar
-  - Transports
-  - Accommodations
-  - Tours
-  - Plans
- -->
   <mat-tab-group>
-
-
     <mat-tab label="Transports">
-      <mat-card class="example-card">
+      <!--    {-->
+      <!--    "id": 1,-->
+      <!--    "type": "bus",-->
+      <!--    "seats": "4",-->
+      <!--    "departureDate": "2022-12-10",-->
+      <!--    "returnDate": "2022-12-14",-->
+      <!--    "price": "100",-->
+      <!--    "agencyId": 1,-->
+      <!--    "transportImages": []-->
+      <!--    },-->
+      <div *ngIf="data?.transports?.length > 0 && !!data?.transports">
+        <div class="grid grid-cols-2 gap-2">
+          <mat-card *ngFor="let transport of data?.transports;">
 
-        <!--    {-->
-        <!--    "id": 1,-->
-        <!--    "type": "bus",-->
-        <!--    "seats": "4",-->
-        <!--    "departureDate": "2022-12-10",-->
-        <!--    "returnDate": "2022-12-14",-->
-        <!--    "price": "100",-->
-        <!--    "agencyId": 1,-->
-        <!--    "transportImages": []-->
-        <!--    },-->
+            <h1 class="text-xl font-bold">Transport #{{transport.id}}</h1>
+            <ul>
+              <li>
+                Type of transport
+                {{transport.type}}
+              </li>
+              <li>
+                Number of seats
+                {{transport.seats}}
+              </li>
+              <li>
+                Departure date
+                {{transport.departureDate}}
+              </li>
+              <li>
+                Return date
+                {{transport.returnDate}}
+              </li>
+              <li>
+                Price
+                {{transport.price}}
+              </li>
+              <li>
+                Agency
+                {{transport.agencyId}}
+              </li>
+            </ul>
 
-        <mat-card-content>
-        <div class="flex flex-col gap-2">
-          <ul class="grid grid-cols-2 gap-4 border-2 border-black p-4" *ngFor="let transport of data?.transports;">
-            <li>
-              Type of transport
-              {{transport.type}}
-            </li>
-            <li>
-              Number of seats
-              {{transport.seats}}
-            </li>
-            <li>
-              Departure date
-              {{transport.departureDate}}
-            </li>
-            <li>
-              Return date
-              {{transport.returnDate}}
-            </li>
-            <li>
-              Price
-              {{transport.price}}
-            </li>
-            <li>
-              Agency
-              {{transport.agencyId}}
-            </li>
-          </ul>
+          </mat-card>
         </div>
-        </mat-card-content>
+      </div>
 
-      </mat-card>
+      <div *ngIf="data?.transports?.length === 0 || data?.transports === null">
+        <p class="text-3xl font-bold">No transports yet</p>
+      </div>
     </mat-tab>
 
     <mat-tab label="Accommodations">
@@ -71,11 +66,12 @@
       <!--      "accommodationImages": []-->
       <!--      }-->
 
-      <mat-card class="example-card">
+      <div *ngIf="data?.accommodations?.length > 0  && !!data?.accommodations">
+        <div class="grid grid-cols-2 gap-2">
+          <mat-card *ngFor="let accommodation of data?.accommodations;">
 
-      <mat-card-content>
-        <div class="flex flex-col gap-2">
-          <ul class="grid grid-cols-2 gap-4 border-2 border-black p-4" *ngFor="let accommodation of data?.accommodations;">
+            <h1 class="text-xl font-bold">Accommodation #{{accommodation.id}}</h1>
+            <ul>
             <li>
               Details
               {{accommodation.details}}
@@ -93,17 +89,60 @@
               {{accommodation.agencyId}}
             </li>
           </ul>
+          </mat-card>
         </div>
-      </mat-card-content>
+      </div>
 
-      </mat-card>
+      <div *ngIf="data?.accommodations?.length === 0 || data?.accommodations === null">
+        <p class="text-3xl font-bold">No transports yet</p>
+      </div>
 
     </mat-tab>
 
-<!--    <mat-tab label="Tours"> </mat-tab>-->
+    <mat-tab label="Tours">
+
+      <div *ngIf="data?.tours?.length > 0 && !!data?.tours">
+        <div class="grid grid-cols-2 gap-2">
+          <mat-card *ngFor="let tour of data?.tours;">
+
+            <h1 class="text-xl font-bold">Tour #{{tour.id}}</h1>
+            <ul>
+              <li>
+                Details
+                {{tour.details}}
+              </li>
+              <li>
+                Location
+                {{tour.location}}
+              </li>
+              <li>
+                Meeting Point
+                {{tour.meetingPoint}}
+              </li>
+              <li>
+                Meeting Point
+                {{tour.meetingPoint}}
+              </li>
+              <li>
+                Price
+                {{tour.price}}
+              </li>
+              <li>
+                Agency ID
+                {{tour.agencyId}}
+              </li>
+            </ul>
+          </mat-card>
+        </div>
+      </div>
+
+      <div *ngIf="data?.tours?.length === 0 || data?.tours === null">
+        <p class="text-3xl font-bold">No tours yet</p>
+      </div>
+
+    </mat-tab>
 
     <mat-tab label="Plans">
-
 <!--      {-->
 <!--        "id": 2,-->
 <!--        "agencyId": 1,-->
@@ -125,10 +164,12 @@
 <!--          }-->
 <!--        ]-->
 <!--      }-->
-      <mat-card class="example-card">
-      <mat-card-content>
-        <div class="flex flex-col gap-2">
-          <ul class="grid grid-cols-2 gap-4 border-2 border-black p-4" *ngFor="let plan of data?.plans;">
+
+      <div *ngIf="data?.plans?.length > 0  && !!data?.plans">
+        <div class="grid grid-cols-2 gap-2">
+      <mat-card *ngFor="let plan of data?.plans;">
+        <h1 class="text-xl font-bold">Review #{{plan.id}}</h1>
+          <ul class="grid grid-cols-2 gap-4 p-4" >
             <li>
               Name
               {{plan.name}}
@@ -162,9 +203,13 @@
               {{plan.accommodationId}}
             </li>
           </ul>
+          </mat-card>
+          </div>
         </div>
-      </mat-card-content>
-      </mat-card>
+
+        <div *ngIf="data?.plans?.length === 0 || data?.plans === null">
+          <p class="text-3xl font-bold">No plans yet</p>
+        </div>
 
     </mat-tab>
 
