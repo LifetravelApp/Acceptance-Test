@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { catchError, Observable, retry, throwError } from "rxjs";
 import { Transport } from "../model/transport";
+import * as moment from "moment";
 
 @Injectable({
 	providedIn: 'root'
@@ -36,7 +37,20 @@ export class TransportsService {
 
 	// Create Transport
 	create(item: any): Observable<Transport> {
-		return this.http.post<Transport>(this.basePath, JSON.stringify(item), this.httpOptions)
+
+    const transport = {
+      type: item.type,
+      seats: item.seats,
+      departureDate: moment(item.departureDate).format('YYYY-MM-DD'),
+      returnDate: moment(item.returnDate).format('YYYY-MM-DD'),
+      price: item.price,
+      agency: {
+        id: item.agencyId
+      },
+      available: "true"
+    }
+
+		return this.http.post<Transport>(this.basePath, JSON.stringify(transport), this.httpOptions)
 			.pipe(
 				retry(2),
 				catchError(this.handleError));

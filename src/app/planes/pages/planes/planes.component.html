@@ -2,8 +2,6 @@
   <h1>Planes Catalogue</h1>
   <h2>{{ isEditMode ? "Edit Plan" : "Add new Plan" }}</h2>
 
-  {{planData | json}}
-
   <form (submit)="onSubmit()" #planForm="ngForm">
     <div class="grid grid-cols-2 gap-x-8">
       <mat-form-field>
@@ -29,7 +27,8 @@
       <mat-form-field>
         <input
           matInput
-          placeholder="Duration"
+          type="text"
+          placeholder="Duration (days)"
           name="duration"
           required
           [(ngModel)]="planData.duration"
@@ -39,7 +38,7 @@
       <mat-form-field>
         <input
           matInput
-          placeholder="Capacity"
+          placeholder="Capacity (people)"
           name="capacity"
           required
           [(ngModel)]="planData.capacity"
@@ -65,45 +64,32 @@
           </mat-select>
       </mat-form-field>
 
-<!--      <mat-form-field>-->
-<!--        <input-->
-<!--          matInput-->
-<!--          placeholder="Agency"-->
-<!--          name="agencyId"-->
-<!--          required-->
-<!--          [(ngModel)]="planData.agencyId"-->
-<!--        />-->
-<!--      </mat-form-field>-->
-
-      <mat-form-field>
-        <input
-          matInput
-          placeholder="Transport"
-          name="transportId"
-          required
-          [(ngModel)]="planData.transportId"
-        />
+      <mat-form-field appearance="fill">
+        <mat-label>Choose a accomodation</mat-label>
+        <mat-select name="accommodationId" [(ngModel)]="planData.accommodationId" required>
+          <mat-option *ngFor="let accommodation of accommodations" [value]="accommodation.id">
+            Id: {{accommodation.id}} -> Location: {{accommodation.location}} -> Price: {{accommodation.price}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
 
-      <mat-form-field>
-        <input
-          matInput
-          placeholder="Accommodation"
-          name="accommodationId"
-          required
-          [(ngModel)]="planData.accommodationId"
-        />
+      <mat-form-field appearance="fill">
+        <mat-label>Choose a transport</mat-label>
+        <mat-select name="transportId" [(ngModel)]="planData.transportId" required>
+          <mat-option *ngFor="let transport of transports" [value]="transport.id">
+            Id: {{ transport.id}} -> Type: {{transport.type}} -> Price: {{ transport.price}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
 
 
-      <mat-form-field>
-        <input
-          matInput
-          placeholder="Tour"
-          name="tourId"
-          required
-          [(ngModel)]="planData.tourId"
-        />
+      <mat-form-field appearance="fill">
+        <mat-label>Choose a tour</mat-label>
+        <mat-select name="tourId" [(ngModel)]="planData.tourId" required>
+          <mat-option *ngFor="let tour of tours" [value]="tour.id">
+            Id: {{tour.id}} -> Location: {{tour.location}} -> Price: {{tour.price}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
 
 <!--      <mat-form-field appearance="fill">-->
@@ -127,8 +113,7 @@
     </div>
   </form>
 
-  <!-- display the raw data -->
-  <!-- <pre>{{ planData | json }}</pre> -->
+   <pre>{{ planData | json }}</pre>
 
   <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
     <ng-container matColumnDef="id">
@@ -180,9 +165,9 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Actions</th>
       <td mat-cell *matCellDef="let element">
-        <a href="javascript:void(0)" (click)="editItem(element)"
-          ><mat-icon>edit</mat-icon></a
-        >
+        <a href="javascript:void(0)" (click)="editItem(element)">
+          <mat-icon>edit</mat-icon>
+        </a>
         |
         <a href="javascript:void(0)" (click)="deleteItem(element.id)"
           ><mat-icon>delete</mat-icon></a

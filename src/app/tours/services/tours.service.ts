@@ -36,7 +36,20 @@ export class ToursService {
 
 	// Create Tour
 	create(item: any): Observable<Tour> {
-		return this.http.post<Tour>(this.basePath, JSON.stringify(item), this.httpOptions)
+
+    const tour = {
+      name: item.name,
+      description: item.description,
+      location: item.location,
+      agency: {
+        id: item.agencyId
+      },
+      meetingPoint: item.meetingPoint,
+      price: item.price,
+      available: "true",
+    }
+
+		return this.http.post<Tour>(this.basePath, JSON.stringify(tour), this.httpOptions)
 			.pipe(
 				retry(2),
 				catchError(this.handleError));

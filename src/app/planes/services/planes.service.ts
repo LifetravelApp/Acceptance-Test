@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { catchError, Observable, retry, throwError } from "rxjs";
 import {Plan} from "../model/plan";
+import {AccommodationsService} from "../../accommodations/services/accommodations.service";
 
 
 @Injectable({
@@ -33,7 +34,12 @@ export class PlanesService {
   create(item: any): Observable<Plan> {
 
     const mappedItem = {
-      ...item,
+      name: item.name,
+      description: item.description,
+      duration: item.duration,
+      capacity: item.capacity,
+      available: "true",
+      thumbnail: item.thumbnail,
       agency: {
         id: item.agencyId
       },

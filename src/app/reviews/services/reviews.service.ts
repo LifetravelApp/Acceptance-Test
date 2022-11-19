@@ -35,12 +35,13 @@ export class ReviewsService {
     // Return Observable with Error Message to Client
     return throwError(() => new Error('Something happened with request, please try again later'));
   }
-  
+
   create(item: any): Observable<Review> {
       const mappedItem = {
-        ...item,
-        agency: {
-          id: item.planid
+        comment: item.comment,
+        rating: item.rating,
+        plan: {
+          id: item.planId
         },
         traveler: {
           id: item.travelerId
@@ -48,6 +49,9 @@ export class ReviewsService {
         // pass a date field with the date in the format yyyy-MM-dd
         date: new Date().toISOString().split('T')[0]
       }
+
+      console.log('envio esto',mappedItem)
+
       return this.http.post<Review>(this.basePath, JSON.stringify(mappedItem), this.httpOptions)
         .pipe(
           retry(2),

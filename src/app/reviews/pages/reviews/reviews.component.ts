@@ -64,6 +64,8 @@ export class ReviewsComponent implements OnInit, AfterViewInit {
           ...review
         }
 
+        console.log('review', review);
+
         this.planesService.getById(review.planId).subscribe((response: any) => {
           reviewMapped.planId = response;
         })
