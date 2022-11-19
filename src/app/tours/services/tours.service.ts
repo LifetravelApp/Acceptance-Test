@@ -38,8 +38,7 @@ export class ToursService {
 	create(item: any): Observable<Tour> {
 
     const tour = {
-      name: item.name,
-      description: item.description,
+      details: item.details,
       location: item.location,
       agency: {
         id: item.agencyId
@@ -48,6 +47,8 @@ export class ToursService {
       price: item.price,
       available: "true",
     }
+
+    console.log(tour)
 
 		return this.http.post<Tour>(this.basePath, JSON.stringify(tour), this.httpOptions)
 			.pipe(
