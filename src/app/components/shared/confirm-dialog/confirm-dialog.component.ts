@@ -41,15 +41,15 @@ export class ConfirmDialogComponent  {
       case "traveler":
         component = TravelerDialogComponent;
         break
-      case "transport":
-        component = TransportDialogComponent;
-        break
       case "plan":
         component = PlanDialogComponent;
         break
       case "review":
         component = ReviewDialogComponent;
         break;
+      case "transport":
+        component = TransportDialogComponent;
+        break
       case "accommodation":
         component = AccommodationDialogComponent;
         break;
