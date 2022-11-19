@@ -9,7 +9,7 @@ import { catchError, Observable, retry, throwError } from "rxjs";
 })
 export class PaymentsService {
 
-  basePath ="http://localhost:3000/payments"
+  basePath ='http://localhost:8080/api/v1/payments';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -30,7 +30,17 @@ export class PaymentsService {
     return throwError(() => new Error('Something happened with request, please try again later'));
   }
   create(item: any): Observable<Payment> {
-    return this.http.post<Payment>(this.basePath, JSON.stringify(item), this.httpOptions)
+    const mappedItem = {
+      price: item.price,
+      plan: {
+        id: item.planId
+      },
+      traveler: {
+        id: item.travelerId
+      },
+
+    }
+    return this.http.post<Payment>(this.basePath, JSON.stringify(mappedItem), this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError));

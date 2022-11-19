@@ -3,30 +3,33 @@
   <h2>{{ isEditMode ? "Edit Payment" : "Add new Payment" }}</h2>
   <form (submit)="onSubmit()" #paymentForm="ngForm">
     <div class="grid grid-cols-2 gap-x-8">
+
       <mat-form-field appearance="fill">
-        <mat-label>Choose an agency</mat-label>
-        <mat-select name="plan" [(ngModel)]="paymentData.plan" required>
-          <mat-option *ngFor="let plan of plans" [value]="plan">
+        <mat-label>Choose a plan</mat-label>
+        <mat-select name="planId" [(ngModel)]="paymentData.planId" required>
+          <mat-option *ngFor="let plan of planes" [value]="plan.id">
             {{ plan.name }}
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-form-field>
-        <input
-          matInput
-          placeholder="Discount (%)"
-          name="discount"
-          required
-          [(ngModel)]="paymentData.discount"
-        />
+
+      <mat-form-field appearance="fill">
+        <mat-label>Choose a traveler</mat-label>
+        <mat-select name="planId" [(ngModel)]="paymentData.travelerId" required>
+          <mat-option *ngFor="let traveler of travelers" [value]="traveler.id">
+            {{ traveler.name }}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
+
+
       <mat-form-field>
         <input
           matInput
-          placeholder="Description"
-          name="description"
+          placeholder="Price"
+          name="price"
           required
-          [(ngModel)]="paymentData.description"
+          [(ngModel)]="paymentData.price"
         />
       </mat-form-field>
     </div>
@@ -46,16 +49,17 @@
       <td mat-cell *matCellDef="let element">{{ element.id }}</td>
     </ng-container>
     <ng-container matColumnDef="plan">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Plan Name</th>
-      <td mat-cell *matCellDef="let element">{{ element.plan.name }}</td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Plan </th>
+      <td mat-cell *matCellDef="let plan">{{ plan.name }}</td>
     </ng-container>
-    <ng-container matColumnDef="discount">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Discount</th>
-      <td mat-cell *matCellDef="let element">{{ element.discount }}</td>
+    <ng-container matColumnDef="traveler">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Traveler </th>
+      <td mat-cell *matCellDef="let traveler">  {{ traveler.name }}</td>
     </ng-container>
-    <ng-container matColumnDef="description">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
-      <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
+      <td mat-cell *matCellDef="let element">{{ element.price }}</td>
     </ng-container>
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Actions</th>
