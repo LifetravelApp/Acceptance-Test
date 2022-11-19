@@ -8,6 +8,7 @@ import { MatSort } from "@angular/material/sort";
 import * as _ from "lodash";
 import * as moment from 'moment';
 import { AgenciesService } from 'src/app/agencies/services/agencies.service';
+import {TransportsService} from "../../../transports/services/transports.service";
 
 @Component({
 	selector: 'app-planes',
@@ -16,7 +17,9 @@ import { AgenciesService } from 'src/app/agencies/services/agencies.service';
 })
 export class PlanesComponent implements OnInit, AfterViewInit {
 	agencies: any = []
-	planData: Plan;
+  transports: any =[]
+
+  planData: Plan;
 	dataSource: MatTableDataSource<any>;
 	displayedColumns: string[] = ['id', 'name', 'description',"duration", "capacity","thumbnail","agencyId","extras",'actions'];
 
@@ -31,7 +34,7 @@ export class PlanesComponent implements OnInit, AfterViewInit {
 
 	isEditMode = false;
 
-	constructor(private planesService: PlanesService, private agenciesService: AgenciesService) {
+	constructor(private planesService: PlanesService, private agenciesService: AgenciesService ,private transportsService:TransportsService) {
 		this.planData = {} as Plan;
 		this.dataSource = new MatTableDataSource<any>();
 	}
@@ -42,6 +45,9 @@ export class PlanesComponent implements OnInit, AfterViewInit {
 		this.agenciesService.getAll().subscribe((response: any) => {
 			this.agencies = response.content;
 		})
+    this.transportsService.getAll().subscribe((response: any) => {
+      this.transports = response.content;
+    })
 	}
 
 	ngAfterViewInit() {

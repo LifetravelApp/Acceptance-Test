@@ -6,13 +6,14 @@ import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { TransportsService } from '../../services/transports.service';
 import * as _ from "lodash";
+import {AgenciesService} from "../../../agencies/services/agencies.service";
 @Component({
   selector: 'app-transports',
   templateUrl: './transports.component.html',
   styleUrls: ['./transports.component.css']
 })
 export class TransportsComponent implements OnInit, AfterViewInit {
-
+  agencies: any =[];
   transportData: Transport;
   dataSource: MatTableDataSource<any>;
   displayedColumns: string[] = ['id', 'type', 'seats', 'departureDate','returnDate', 'price',"agency", "images","actions"];
@@ -28,7 +29,9 @@ export class TransportsComponent implements OnInit, AfterViewInit {
 
   isEditMode = false;
 
-  constructor(private transportsService: TransportsService) {
+
+
+  constructor(private transportsService: TransportsService, private agenciesService: AgenciesService) {
     this.transportData = {} as Transport;
     this.dataSource = new MatTableDataSource<any>();
   }
@@ -36,6 +39,9 @@ export class TransportsComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.dataSource.paginator = this.paginator;
     this.getAllTransports();
+    this.agenciesService.getAll().subscribe((response: any) => {
+      this.agencies = response.content;
+    })
   }
 
   ngAfterViewInit() {

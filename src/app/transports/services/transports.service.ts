@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { catchError, Observable, retry, throwError } from "rxjs";
 import { Transport } from "../model/transport";
+import {coerceStringArray} from "@angular/cdk/coercion";
 
 @Injectable({
 	providedIn: 'root'
@@ -18,7 +19,6 @@ export class TransportsService {
 		})
 	}
 	constructor(private http: HttpClient) { }
-
 	// API Error Handling
 	handleError(error: HttpErrorResponse) {
 		if (error.error instanceof ErrorEvent) {
@@ -36,7 +36,20 @@ export class TransportsService {
 
 	// Create Transport
 	create(item: any): Observable<Transport> {
-		return this.http.post<Transport>(this.basePath, JSON.stringify(item), this.httpOptions)
+
+
+    const mappedItem ={
+      ...item,
+       agency:{
+        id:item.agencyId
+       }
+    }
+
+
+
+
+
+		return this.http.post<Transport>(this.basePath, JSON.stringify(mappedItem), this.httpOptions)
 			.pipe(
 				retry(2),
 				catchError(this.handleError));

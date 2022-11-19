@@ -30,6 +30,15 @@
           [(ngModel)]="accommodationData.price"
         />
       </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Choose an agency</mat-label>
+        <mat-select name="agencyId" [(ngModel)]="accommodationData.agencyId" required>
+          <mat-option *ngFor="let agency of agencies" [value]="agency.id">
+            {{ agency.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
     </div>
     <div class="text-center my-8">
       <ng-container *ngIf="isEditMode; else elseTemplate">
