@@ -30,14 +30,25 @@
           [(ngModel)]="accommodationData.price"
         />
       </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Choose an agency</mat-label>
+        <mat-select name="agencyId" [(ngModel)]="accommodationData.agencyId" required>
+          <mat-option *ngFor="let agency of agencies" [value]="agency.id">
+            {{ agency.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
     </div>
     <div class="text-center my-8">
       <ng-container *ngIf="isEditMode; else elseTemplate">
-        <button mat-button color="primary">Update</button>
-        <button mat-button color="warn" (click)="cancelEdit()">Cancel</button>
+        <div class="flex flex-column gap-2 justify-center">
+          <button mat-button class="bg-[#ee21ba] text-[#ffffff] ">Update</button>
+          <button mat-button class="bg-[#ee21ba] text-[#ffffff]" (click)="cancelEdit()">Cancel</button>
+        </div>
       </ng-container>
       <ng-template #elseTemplate>
-        <button mat-button color="primary">Add</button>
+        <button mat-button class="bg-[#ee21ba] text-[#ffffff]">Add</button>
       </ng-template>
     </div>
   </form>
@@ -72,7 +83,7 @@
     <ng-container matColumnDef="images">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Images</th>
       <td mat-cell *matCellDef="let element">
-        {{element.accommodationImages ?? [] | json}}
+        <app-confirm-dialog [data]="element.accommodationImages" type="accommodation"></app-confirm-dialog>
       </td>
     </ng-container>
 
@@ -82,7 +93,7 @@
         <a href="javascript:void(0)" (click)="editItem(element)"
         ><mat-icon>edit</mat-icon></a
         >
-        |
+
         <a href="javascript:void(0)" (click)="deleteItem(element.id)"
         ><mat-icon>delete</mat-icon></a
         >

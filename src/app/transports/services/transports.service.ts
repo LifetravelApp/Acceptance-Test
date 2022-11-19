@@ -15,11 +15,10 @@ export class TransportsService {
 	httpOptions = {
 		headers: new HttpHeaders({
 			'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
+			'Access-Control-Allow-Origin': '*',
 		})
 	}
 	constructor(private http: HttpClient) { }
-
 	// API Error Handling
 	handleError(error: HttpErrorResponse) {
 		if (error.error instanceof ErrorEvent) {
@@ -38,17 +37,17 @@ export class TransportsService {
 	// Create Transport
 	create(item: any): Observable<Transport> {
 
-    const transport = {
-      type: item.type,
-      seats: item.seats,
-      departureDate: moment(item.departureDate).format('YYYY-MM-DD'),
-      returnDate: moment(item.returnDate).format('YYYY-MM-DD'),
-      price: item.price,
-      agency: {
-        id: item.agencyId
-      },
-      available: "true"
-    }
+		const transport = {
+			type: item.type,
+			seats: item.seats,
+			departureDate: moment(item.departureDate).format('YYYY-MM-DD'),
+			returnDate: moment(item.returnDate).format('YYYY-MM-DD'),
+			price: item.price,
+			agency: {
+				id: item.agencyId
+			},
+			available: "true"
+		}
 
 		return this.http.post<Transport>(this.basePath, JSON.stringify(transport), this.httpOptions)
 			.pipe(

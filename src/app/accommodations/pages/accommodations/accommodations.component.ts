@@ -6,13 +6,14 @@ import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { AccommodationsService } from '../../services/accommodations.service';
 import * as _ from "lodash";
+import {AgenciesService} from "../../../agencies/services/agencies.service";
 @Component({
   selector: 'app-accommodations',
   templateUrl: './accommodations.component.html',
   styleUrls: ['./accommodations.component.css']
 })
 export class AccommodationsComponent implements OnInit, AfterViewInit {
-
+  agencies: any =[];
   accommodationData: Accommodation;
   dataSource: MatTableDataSource<any>;
   displayedColumns: string[] = ['id', 'location', 'details', 'price','agency','images', 'actions'];
@@ -28,9 +29,12 @@ export class AccommodationsComponent implements OnInit, AfterViewInit {
 
   isEditMode = false;
 
-  constructor(private accommodationsService: AccommodationsService) {
+  constructor(private accommodationsService: AccommodationsService, private agenciesService: AgenciesService) {
     this.accommodationData = {} as Accommodation;
     this.dataSource = new MatTableDataSource<any>();
+    this.agenciesService.getAll().subscribe((response: any) => {
+      this.agencies = response.content;
+    })
   }
 
   ngOnInit(): void {
