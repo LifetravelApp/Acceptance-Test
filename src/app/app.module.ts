@@ -44,6 +44,8 @@ import {TransportDialogComponent} from "./transports/components/transport-dialog
 import {PlanDialogComponent} from "./planes/components/plan-dialog/plan-dialog.component";
 import {ConfirmDialogComponent} from "./components/shared/confirm-dialog/confirm-dialog.component";
 import {ReviewDialogComponent} from "./reviews/components/review-dialog/review-dialog.component";
+import { AccommodationDialogComponent } from './accommodations/components/accommodation-dialog/accommodation-dialog/accommodation-dialog.component';
+import { TourDialogComponent } from './tours/components/tour-dialog/tour-dialog/tour-dialog.component';
 
 
 @NgModule({
@@ -63,7 +65,9 @@ import {ReviewDialogComponent} from "./reviews/components/review-dialog/review-d
     TravelerDialogComponent,
     TransportDialogComponent,
     PlanDialogComponent,
-    ReviewDialogComponent
+    ReviewDialogComponent,
+    AccommodationDialogComponent,
+    TourDialogComponent
 	],
 	imports: [
 		BrowserModule,
@@ -92,7 +96,7 @@ import {ReviewDialogComponent} from "./reviews/components/review-dialog/review-d
     MatSliderModule,
     MatRadioModule
 	],
-  entryComponents: [ConfirmDialogComponent,AgencyDialogComponent,TravelerDialogComponent,TransportDialogComponent,PlanDialogComponent,ReviewDialogComponent],
+  entryComponents: [ConfirmDialogComponent,AgencyDialogComponent,TravelerDialogComponent,TransportDialogComponent,PlanDialogComponent,ReviewDialogComponent, AccommodationDialogComponent,TourDialogComponent],
 	providers: [],
 	bootstrap: [AppComponent]
 })

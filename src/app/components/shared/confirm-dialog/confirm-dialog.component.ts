@@ -5,6 +5,10 @@ import {TravelerDialogComponent} from "../../../travelers/components/traveler-di
 import {TransportDialogComponent} from "../../../transports/components/transport-dialog/transport-dialog.component";
 import {PlanDialogComponent} from "../../../planes/components/plan-dialog/plan-dialog.component";
 import {ReviewDialogComponent} from "../../../reviews/components/review-dialog/review-dialog.component";
+import {
+  AccommodationDialogComponent
+} from "../../../accommodations/components/accommodation-dialog/accommodation-dialog/accommodation-dialog.component";
+import {TourDialogComponent} from "../../../tours/components/tour-dialog/tour-dialog/tour-dialog.component";
 
 @Component({
   selector: 'app-confirm-dialog',
@@ -45,6 +49,12 @@ export class ConfirmDialogComponent  {
         break
       case "review":
         component = ReviewDialogComponent;
+        break;
+      case "accommodation":
+        component = AccommodationDialogComponent;
+        break;
+      case "tour":
+        component = TourDialogComponent;
         break;
       default:
         component = AgencyDialogComponent;

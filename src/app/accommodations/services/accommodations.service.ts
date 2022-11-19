@@ -36,7 +36,16 @@ export class AccommodationsService {
 
 	// Create Accommodation
 	create(item: any): Observable<Accommodation> {
-		return this.http.post<Accommodation>(this.basePath, JSON.stringify(item), this.httpOptions)
+
+
+
+    const mappedItem ={
+      ...item,
+      agency:{
+        id:item.agencyId
+      }
+    }
+		return this.http.post<Accommodation>(this.basePath, JSON.stringify(mappedItem), this.httpOptions)
 			.pipe(
 				retry(2),
 				catchError(this.handleError));

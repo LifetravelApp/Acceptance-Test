@@ -30,7 +30,6 @@
           [(ngModel)]="tourData.price"
         />
       </mat-form-field>
-
       <mat-form-field>
         <input
           matInput
@@ -40,6 +39,15 @@
           [(ngModel)]="tourData.meetingPoint"
         />
       </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Choose an agency</mat-label>
+        <mat-select name="agencyId" [(ngModel)]="tourData.agencyId" required>
+          <mat-option *ngFor="let agency of agencies" [value]="agency.id">
+            {{ agency.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
     </div>
     <div class="text-center my-8">
       <ng-container *ngIf="isEditMode; else elseTemplate">
