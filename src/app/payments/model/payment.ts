@@ -1,6 +1,6 @@
 export interface Payment {
 	id: number;
-	plan: string;
-	description: string;
-	discount: number;
+	planId: number |  string;
+	price :number |  string;
+  travelerId: number |  string;
 }

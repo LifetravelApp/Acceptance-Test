@@ -7,6 +7,7 @@ import * as _ from "lodash";
 import { Payment } from "../../model/payment";
 import { PaymentsService } from "../../services/payments.service";
 import { PlanesService } from 'src/app/planes/services/planes.service';
+import {TravelersService} from "../../../travelers/services/travelers.service";
 
 @Component({
 	selector: 'app-payment',
@@ -14,10 +15,11 @@ import { PlanesService } from 'src/app/planes/services/planes.service';
 	styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit, AfterViewInit {
-	plans: any = [];
+	planes: any = [];
+  travelers : any =[];
 	paymentData: Payment;
 	dataSource: MatTableDataSource<any>;
-	displayedColumns: string[] = ['id', 'plan', 'description', 'discount', 'actions'];
+	displayedColumns: string[] = ['id', 'plan', 'traveler', 'price', 'actions'];
 	@ViewChild('paymentForm', { static: false })
 	paymentForm!: NgForm;
 
@@ -28,7 +30,8 @@ export class PaymentComponent implements OnInit, AfterViewInit {
 	sort!: MatSort;
 
 	isEditMode = false;
-	constructor(private paymentsService: PaymentsService, private planesService: PlanesService) {
+
+	constructor(private paymentsService: PaymentsService, private planesService: PlanesService , private  travelersService : TravelersService) {
 		this.paymentData = {} as Payment;
 		this.dataSource = new MatTableDataSource<any>();
 	}
@@ -37,8 +40,14 @@ export class PaymentComponent implements OnInit, AfterViewInit {
 		this.dataSource.paginator = this.paginator;
 		this.getAllPayments();
 		this.planesService.getAll().subscribe((response: any) => {
-			this.plans = response;
+			this.planes = response;
 		})
+    this.planesService.getAll().subscribe((response: any) => {
+      this.planes = response.content;
+    })
+    this.travelersService.getAll().subscribe((response: any) => {
+      this.travelers = response.content;
+    })
 	}
 
 	ngAfterViewInit() {
