@@ -9,14 +9,9 @@ mat-radio-button{
   color: #000;
 }
 
-.mat-tab-label-content {
-  color: #ffffff !important;
-}
-
 h1,h2 { color: black}
 
-
-input {color: black !important;}
+input {color: black}
 
 tr.editable-row {
   background-color: lightskyblue;

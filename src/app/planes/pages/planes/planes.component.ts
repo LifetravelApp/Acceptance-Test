@@ -25,7 +25,7 @@ export class PlanesComponent implements OnInit, AfterViewInit {
 
 	planData: Plan;
 	dataSource: MatTableDataSource<any>;
-	displayedColumns: string[] = ['id', 'name', 'description',"duration", "capacity","thumbnail","agencyId","extras",'actions'];
+	displayedColumns: string[] = ['id', 'name', 'description',"duration", "capacity","extras",'actions'];
 
 	@ViewChild('planForm', { static: false })
 	planForm!: NgForm;

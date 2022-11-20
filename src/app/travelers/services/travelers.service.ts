@@ -2,19 +2,19 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { catchError, Observable, retry, throwError } from "rxjs";
 import { Traveler } from "../model/traveler";
+import BASE_URL from 'common/http';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class TravelersService {
 
-	// Travelers Endpoint
-	basePath = 'http://localhost:8080/api/v1/travelers';
+	basePath = `${BASE_URL}/api/v1/travelers`;
 
 	httpOptions = {
 		headers: new HttpHeaders({
 			'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
+			'Access-Control-Allow-Origin': '*',
 		})
 	}
 	constructor(private http: HttpClient) { }

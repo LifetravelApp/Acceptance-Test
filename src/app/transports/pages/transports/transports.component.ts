@@ -20,6 +20,12 @@ export class TransportsComponent implements OnInit, AfterViewInit {
   dataSource: MatTableDataSource<any>;
   displayedColumns: string[] = ['id', 'type', 'seats', 'departureDate','returnDate', 'price',"agencyId", "images","actions"];
 
+   transportOptions: any[] = [
+    'Bus',
+    'Train',
+    'Plane'
+  ]
+
   @ViewChild('transportForm', { static: false })
   transportForm!: NgForm;
 

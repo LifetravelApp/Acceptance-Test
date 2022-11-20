@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { catchError, Observable, retry, throwError } from "rxjs";
 import { Agency } from "../model/agency";
+import BASE_URL from "../../../../common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { Agency } from "../model/agency";
 export class AgenciesService {
 
   // Agency Endpoint
-  basePath = 'http://localhost:8080/api/v1/agencies';
+  basePath = `${BASE_URL}/api/v1/agencies`;
 
   httpOptions = {
     headers: new HttpHeaders({

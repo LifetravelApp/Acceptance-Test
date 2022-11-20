@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { catchError, Observable, retry, throwError } from "rxjs";
-import { Transport } from "../model/transport";
+import { TransportImage } from "../model/transportImage";
 import * as moment from "moment";
 import BASE_URL from 'common/http';
 
 @Injectable({
 	providedIn: 'root'
 })
-export class TransportsService {
+export class TransportImagesService {
 
-	
-	basePath = `${BASE_URL}/api/v1/transports`;
+
+	basePath = `${BASE_URL}/api/v1/transport_images`;
 
 	httpOptions = {
 		headers: new HttpHeaders({
@@ -35,52 +35,47 @@ export class TransportsService {
 		return throwError(() => new Error('Something happened with request, please try again later'));
 	}
 
-	// Create Transport
-	create(item: any): Observable<Transport> {
+	// Create TransportImage
+	create(item: any): Observable<TransportImage> {
 
-		const transport = {
-			type: item.type,
-			seats: item.seats,
-			departureDate: moment(item.departureDate).format('YYYY-MM-DD'),
-			returnDate: moment(item.returnDate).format('YYYY-MM-DD'),
-			price: item.price,
-			agency: {
-				id: item.agencyId
+		const image = {
+			path: item.path,
+			transport: {
+				id: item.transportId
 			},
-			available: "true"
 		}
 
-		return this.http.post<Transport>(this.basePath, JSON.stringify(transport), this.httpOptions)
+		return this.http.post<TransportImage>(this.basePath, JSON.stringify(image), this.httpOptions)
 			.pipe(
 				retry(2),
 				catchError(this.handleError));
 	}
 
-	// Get Transport by id
-	getById(id: any): Observable<Transport> {
-		return this.http.get<Transport>(`${this.basePath}/${id}`, this.httpOptions)
+	// Get TransportImage by id
+	getById(id: any): Observable<TransportImage> {
+		return this.http.get<TransportImage>(`${this.basePath}/${id}`, this.httpOptions)
 			.pipe(
 				retry(2),
 				catchError(this.handleError));
 	}
 
 	// Get All Transports
-	getAll(): Observable<Transport> {
-		return this.http.get<Transport>(this.basePath, this.httpOptions)
+	getAll(): Observable<TransportImage> {
+		return this.http.get<TransportImage>(this.basePath, this.httpOptions)
 			.pipe(
 				retry(2),
 				catchError(this.handleError));
 	}
 
-	// Update Transport
-	update(id: any, item: any): Observable<Transport> {
-		return this.http.put<Transport>(`${this.basePath}/${id}`, JSON.stringify(item), this.httpOptions)
+	// Update TransportImage
+	update(id: any, item: any): Observable<TransportImage> {
+		return this.http.put<TransportImage>(`${this.basePath}/${id}`, JSON.stringify(item), this.httpOptions)
 			.pipe(
 				retry(2),
 				catchError(this.handleError));
 	}
 
-	// Delete Transport
+	// Delete TransportImage
 	delete(id: any) {
 		return this.http.delete(`${this.basePath}/${id}`, this.httpOptions)
 			.pipe(

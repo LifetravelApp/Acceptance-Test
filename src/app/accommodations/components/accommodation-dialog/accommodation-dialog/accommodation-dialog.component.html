@@ -1,7 +1,7 @@
 <div id="btn-container">
   <button mat-button mat-dialog-close>X</button>
 </div>
-<h2 mat-dialog-title>Accommodation Images: {{data?.length }}</h2>
+<h2 mat-dialog-title>Accommodation Images: {{data?.length || 0 }}</h2>
 <div mat-dialog-content>
   <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-2" *ngIf="data?.length > 0 && !!data">
     <div *ngFor="let image of data">

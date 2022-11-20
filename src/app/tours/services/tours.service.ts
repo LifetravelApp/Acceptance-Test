@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { catchError, Observable, retry, throwError } from "rxjs";
 import { Tour } from "../model/tour";
+import BASE_URL from "../../../../common/http";
 
 @Injectable({
 	providedIn: 'root'
@@ -9,12 +10,12 @@ import { Tour } from "../model/tour";
 export class ToursService {
 
 	// Tours Endpoint
-	basePath = 'http://localhost:8080/api/v1/tours';
+	basePath = `${BASE_URL}/api/v1/tours`;
 
 	httpOptions = {
 		headers: new HttpHeaders({
 			'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
+			'Access-Control-Allow-Origin': '*',
 		})
 	}
 	constructor(private http: HttpClient) { }
@@ -37,18 +38,18 @@ export class ToursService {
 	// Create Tour
 	create(item: any): Observable<Tour> {
 
-    const tour = {
-      details: item.details,
-      location: item.location,
-      agency: {
-        id: item.agencyId
-      },
-      meetingPoint: item.meetingPoint,
-      price: item.price,
-      available: "true",
-    }
+		const tour = {
+			details: item.details,
+			location: item.location,
+			agency: {
+				id: item.agencyId
+			},
+			meetingPoint: item.meetingPoint,
+			price: item.price,
+			available: "true",
+		}
 
-    console.log(tour)
+		console.log(tour)
 
 		return this.http.post<Tour>(this.basePath, JSON.stringify(tour), this.httpOptions)
 			.pipe(

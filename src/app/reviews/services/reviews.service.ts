@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { catchError, Observable, retry, throwError } from "rxjs";
 import { Review } from "../model/review";
+import BASE_URL from 'common/http';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class ReviewsService {
 
-  // Reviews Endpoint
-  basePath = 'http://localhost:8080/api/v1/reviews';
+	basePath = `${BASE_URL}/api/v1/reviews`;
 
   httpOptions = {
     headers: new HttpHeaders({

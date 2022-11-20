@@ -5,8 +5,18 @@
 table {
   width: 100%;
 }
+mat-radio-button{
+  color: #000;
+}
 
-input {color: black}
+.mat-tab-label-content {
+  color: #ffffff !important;
+}
+
+h1,h2 { color: black}
+
+
+input {color: black !important;}
 
 tr.editable-row {
   background-color: lightskyblue;

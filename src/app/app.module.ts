@@ -46,6 +46,9 @@ import {ConfirmDialogComponent} from "./components/shared/confirm-dialog/confirm
 import {ReviewDialogComponent} from "./reviews/components/review-dialog/review-dialog.component";
 import { AccommodationDialogComponent } from './accommodations/components/accommodation-dialog/accommodation-dialog/accommodation-dialog.component';
 import { TourDialogComponent } from './tours/components/tour-dialog/tour-dialog/tour-dialog.component';
+import { TransportImagesComponent } from './transports/pages/transport-images/transport-images.component';
+import {AccommodationImagesComponent} from "./accommodations/pages/accommodation-images/accommodation-images.component";
+import {TourImagesComponent} from "./tours/pages/tour-images/tour-images.component";
 
 
 @NgModule({
@@ -59,6 +62,9 @@ import { TourDialogComponent } from './tours/components/tour-dialog/tour-dialog/
     AccommodationsComponent,
     ToursComponent,
     ReviewsComponent,
+		TransportImagesComponent,
+    AccommodationImagesComponent,
+    TourImagesComponent,
     // Dialogs
     ConfirmDialogComponent,
     AgencyDialogComponent,
