@@ -20,7 +20,7 @@ export class ReviewsComponent implements OnInit, AfterViewInit {
 
   reviewData: Review;
   dataSource: MatTableDataSource<any>;
-  displayedColumns: string[] = ['id',"comment","rating","date","extras" ,"actions"];
+  displayedColumns: string[] = ['id',"comment","rating","date","travelerId","planId" ,"actions"];
 
   @ViewChild('reviewForm', { static: false })
   reviewForm!: NgForm;
@@ -58,25 +58,28 @@ export class ReviewsComponent implements OnInit, AfterViewInit {
   getAllReviews() {
     this.reviewsService.getAll().subscribe((response: any) => {
 
-      const reviews: any = response.content.map((review: any) => {
+      // const reviews: any = response.content.map((review: any) => {
 
-        const reviewMapped = {
-          ...review
-        }
+        // const reviewMapped = {
+        //   ...review
+        // }
 
-        console.log('review', review);
+        // console.log('review', review);
 
-        this.planesService.getById(review.planId).subscribe((response: any) => {
-          reviewMapped.planId = response;
-        })
-        this.travelersService.getById(review.travelerId).subscribe((response: any) => {
-          reviewMapped.travelerId = response;
-        })
+        // this.planesService.getById(review.planId).subscribe((response: any) => {
+        //   reviewMapped.planId = response;
+        // })
+        // this.travelersService.getById(review.travelerId).subscribe((response: any) => {
+        //   reviewMapped.travelerId = response;
+        // })
 
-        return reviewMapped;
+        // return reviewMapped;
 
-      })
-      this.dataSource.data = reviews;
+      // })
+
+      // console.log("reviews",reviews);
+
+      this.dataSource.data = response.content;
 
     });
   }

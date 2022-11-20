@@ -31,7 +31,20 @@ export class PaymentsService {
 		return throwError(() => new Error('Something happened with request, please try again later'));
 	}
 	create(item: any): Observable<Payment> {
-		return this.http.post<Payment>(this.basePath, JSON.stringify(item), this.httpOptions)
+
+    const payment = {
+      plan: {
+        id: item.planId
+      },
+      traveler: {
+        id: item.travelerId
+      },
+      price: item.price
+    }
+
+    console.log(payment);
+
+		return this.http.post<Payment>(this.basePath, JSON.stringify(payment), this.httpOptions)
 			.pipe(
 				retry(2),
 				catchError(this.handleError));

@@ -1,5 +1,8 @@
 <div class="table-wrapper">
   <h1>Payments Catalogue</h1>
+
+<!--  <pre>{{paymentData | json}}</pre>-->
+
   <h2>{{ isEditMode ? "Edit Payment" : "Add new Payment" }}</h2>
   <form (submit)="onSubmit()" #paymentForm="ngForm">
     <div class="grid grid-cols-2 gap-x-8">
@@ -35,11 +38,19 @@
     </div>
     <div class="text-center my-8">
       <ng-container *ngIf="isEditMode; else elseTemplate">
-        <button mat-button color="primary">Update</button>
-        <button mat-button color="warn" (click)="cancelEdit()">Cancel</button>
+        <div class="flex flex-column gap-2 justify-center">
+          <button mat-button class="bg-[#ee21ba] text-[#ffffff]">Update</button>
+          <button
+            mat-button
+            class="bg-[#ee21ba] text-[#ffffff]"
+            (click)="cancelEdit()"
+          >
+            Cancel
+          </button>
+        </div>
       </ng-container>
       <ng-template #elseTemplate>
-        <button mat-button color="primary">Add</button>
+        <button mat-button class="bg-[#ee21ba] text-[#ffffff]">Add</button>
       </ng-template>
     </div>
   </form>
@@ -48,13 +59,13 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>#Id</th>
       <td mat-cell *matCellDef="let element">{{ element.id }}</td>
     </ng-container>
-    <ng-container matColumnDef="plan">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Plan </th>
-      <td mat-cell *matCellDef="let plan">{{ plan.name }}</td>
+    <ng-container matColumnDef="planId">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Plan Id</th>
+      <td mat-cell *matCellDef="let element">{{ element.plan.id }}</td>
     </ng-container>
-    <ng-container matColumnDef="traveler">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Traveler </th>
-      <td mat-cell *matCellDef="let traveler">  {{ traveler.name }}</td>
+    <ng-container matColumnDef="travelerId">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Traveler Id</th>
+      <td mat-cell *matCellDef="let element">  {{ element.traveler.id }}</td>
     </ng-container>
 
     <ng-container matColumnDef="price">
@@ -64,10 +75,10 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Actions</th>
       <td mat-cell *matCellDef="let element">
-        <a href="javascript:void(0)" (click)="editItem(element)"
-          ><mat-icon>edit</mat-icon></a
-        >
-        |
+<!--        <a href="javascript:void(0)" (click)="editItem(element)"-->
+<!--          ><mat-icon>edit</mat-icon></a-->
+<!--        >-->
+<!--        |-->
         <a href="javascript:void(0)" (click)="deleteItem(element.id)"
           ><mat-icon>delete</mat-icon></a
         >

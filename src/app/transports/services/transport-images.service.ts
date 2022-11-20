@@ -69,7 +69,15 @@ export class TransportImagesService {
 
 	// Update TransportImage
 	update(id: any, item: any): Observable<TransportImage> {
-		return this.http.put<TransportImage>(`${this.basePath}/${id}`, JSON.stringify(item), this.httpOptions)
+
+    const image = {
+      path: item.path,
+      transport: {
+        id: item.transportId
+      }
+    }
+
+		return this.http.put<TransportImage>(`${this.basePath}/${id}`, JSON.stringify(image), this.httpOptions)
 			.pipe(
 				retry(2),
 				catchError(this.handleError));
