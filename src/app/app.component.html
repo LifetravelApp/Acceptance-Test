@@ -7,8 +7,8 @@
         [routerLink]="route.path"
         (click)="sidenav.toggle()"
       >
-        {{ capitalize(route?.path ?? "") }}</a
-      >
+        <span *ngIf="route?.path !== '**'">{{ capitalize(route?.path ?? "") }}</span>
+      </a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content class="black-container">

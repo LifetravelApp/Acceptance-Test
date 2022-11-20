@@ -6,6 +6,8 @@ import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { TransportsService } from '../../services/transports.service';
 import * as _ from "lodash";
+import * as moment from 'moment';
+import {AgenciesService} from "../../../agencies/services/agencies.service";
 @Component({
   selector: 'app-transports',
   templateUrl: './transports.component.html',
@@ -13,9 +15,16 @@ import * as _ from "lodash";
 })
 export class TransportsComponent implements OnInit, AfterViewInit {
 
+  agencies: any = [];
   transportData: Transport;
   dataSource: MatTableDataSource<any>;
-  displayedColumns: string[] = ['id', 'type', 'seats', 'departureDate','returnDate', 'price',"agency", "images","actions"];
+  displayedColumns: string[] = ['id', 'type', 'seats', 'departureDate','returnDate', 'price',"agencyId", "images","actions"];
+
+   transportOptions: any[] = [
+    'Bus',
+    'Train',
+    'Plane'
+  ]
 
   @ViewChild('transportForm', { static: false })
   transportForm!: NgForm;
@@ -28,7 +37,7 @@ export class TransportsComponent implements OnInit, AfterViewInit {
 
   isEditMode = false;
 
-  constructor(private transportsService: TransportsService) {
+  constructor(private transportsService: TransportsService, private agenciesService: AgenciesService) {
     this.transportData = {} as Transport;
     this.dataSource = new MatTableDataSource<any>();
   }
@@ -36,6 +45,9 @@ export class TransportsComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.dataSource.paginator = this.paginator;
     this.getAllTransports();
+    this.agenciesService.getAll().subscribe((response: any) => {
+      this.agencies = response.content;
+    })
   }
 
   ngAfterViewInit() {
@@ -69,6 +81,7 @@ export class TransportsComponent implements OnInit, AfterViewInit {
   }
 
   addTransport() {
+
     this.transportsService.create(this.transportData).subscribe((response: any) => {
       this.dataSource.data.push({ ...response });
       this.dataSource.data = this.dataSource.data.map((o: any) => { return o; });

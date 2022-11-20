@@ -16,7 +16,7 @@ export class AgenciesComponent implements OnInit, AfterViewInit {
 
 	agencyData: Agency;
 	dataSource: MatTableDataSource<any>;
-	displayedColumns: string[] = ['id', 'name', 'ruc', 'email','transports', 'actions'];
+	displayedColumns: string[] = ['id', 'name', 'ruc', 'email','extra', 'actions'];
 
 	@ViewChild('agenciesForm', { static: false })
 	agenciesForm!: NgForm;

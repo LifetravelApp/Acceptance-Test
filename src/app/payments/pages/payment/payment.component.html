@@ -1,42 +1,56 @@
 <div class="table-wrapper">
   <h1>Payments Catalogue</h1>
+
+<!--  <pre>{{paymentData | json}}</pre>-->
+
   <h2>{{ isEditMode ? "Edit Payment" : "Add new Payment" }}</h2>
   <form (submit)="onSubmit()" #paymentForm="ngForm">
     <div class="grid grid-cols-2 gap-x-8">
+
       <mat-form-field appearance="fill">
-        <mat-label>Choose an agency</mat-label>
-        <mat-select name="plan" [(ngModel)]="paymentData.plan" required>
-          <mat-option *ngFor="let plan of plans" [value]="plan">
+        <mat-label>Choose a plan</mat-label>
+        <mat-select name="planId" [(ngModel)]="paymentData.planId" required>
+          <mat-option *ngFor="let plan of planes" [value]="plan.id">
             {{ plan.name }}
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-form-field>
-        <input
-          matInput
-          placeholder="Discount (%)"
-          name="discount"
-          required
-          [(ngModel)]="paymentData.discount"
-        />
+
+      <mat-form-field appearance="fill">
+        <mat-label>Choose a traveler</mat-label>
+        <mat-select name="planId" [(ngModel)]="paymentData.travelerId" required>
+          <mat-option *ngFor="let traveler of travelers" [value]="traveler.id">
+            {{ traveler.name }}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
+
+
       <mat-form-field>
         <input
           matInput
-          placeholder="Description"
-          name="description"
+          placeholder="Price"
+          name="price"
           required
-          [(ngModel)]="paymentData.description"
+          [(ngModel)]="paymentData.price"
         />
       </mat-form-field>
     </div>
     <div class="text-center my-8">
       <ng-container *ngIf="isEditMode; else elseTemplate">
-        <button mat-button color="primary">Update</button>
-        <button mat-button color="warn" (click)="cancelEdit()">Cancel</button>
+        <div class="flex flex-column gap-2 justify-center">
+          <button mat-button class="bg-[#ee21ba] text-[#ffffff]">Update</button>
+          <button
+            mat-button
+            class="bg-[#ee21ba] text-[#ffffff]"
+            (click)="cancelEdit()"
+          >
+            Cancel
+          </button>
+        </div>
       </ng-container>
       <ng-template #elseTemplate>
-        <button mat-button color="primary">Add</button>
+        <button mat-button class="bg-[#ee21ba] text-[#ffffff]">Add</button>
       </ng-template>
     </div>
   </form>
@@ -45,25 +59,26 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>#Id</th>
       <td mat-cell *matCellDef="let element">{{ element.id }}</td>
     </ng-container>
-    <ng-container matColumnDef="plan">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Plan Name</th>
-      <td mat-cell *matCellDef="let element">{{ element.plan.name }}</td>
+    <ng-container matColumnDef="planId">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Plan Id</th>
+      <td mat-cell *matCellDef="let element">{{ element.plan.id }}</td>
     </ng-container>
-    <ng-container matColumnDef="discount">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Discount</th>
-      <td mat-cell *matCellDef="let element">{{ element.discount }}</td>
+    <ng-container matColumnDef="travelerId">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Traveler Id</th>
+      <td mat-cell *matCellDef="let element">  {{ element.traveler.id }}</td>
     </ng-container>
-    <ng-container matColumnDef="description">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
-      <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
+      <td mat-cell *matCellDef="let element">{{ element.price }}</td>
     </ng-container>
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Actions</th>
       <td mat-cell *matCellDef="let element">
-        <a href="javascript:void(0)" (click)="editItem(element)"
-          ><mat-icon>edit</mat-icon></a
-        >
-        |
+<!--        <a href="javascript:void(0)" (click)="editItem(element)"-->
+<!--          ><mat-icon>edit</mat-icon></a-->
+<!--        >-->
+<!--        |-->
         <a href="javascript:void(0)" (click)="deleteItem(element.id)"
           ><mat-icon>delete</mat-icon></a
         >

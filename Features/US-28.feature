@@ -9,4 +9,3 @@ Given que usuario viajero escribe en la barra de busqueda "https://lifetravel-fc
 When  haga clic en este   
 Then no accederá a la página web
 And  se le mostra un error 404
-

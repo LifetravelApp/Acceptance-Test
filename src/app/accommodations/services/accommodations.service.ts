@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { catchError, Observable, retry, throwError } from "rxjs";
 import { Accommodation } from "../model/accomodation";
+import BASE_URL from 'common/http';
 
 @Injectable({
 	providedIn: 'root'
@@ -9,12 +10,12 @@ import { Accommodation } from "../model/accomodation";
 export class AccommodationsService {
 
 	// Accommodations Endpoint
-	basePath = 'http://localhost:8080/api/v1/accommodations';
+	basePath = `${BASE_URL}/api/v1/accommodations`;
 
 	httpOptions = {
 		headers: new HttpHeaders({
 			'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
+			'Access-Control-Allow-Origin': '*',
 		})
 	}
 	constructor(private http: HttpClient) { }
@@ -36,7 +37,16 @@ export class AccommodationsService {
 
 	// Create Accommodation
 	create(item: any): Observable<Accommodation> {
-		return this.http.post<Accommodation>(this.basePath, JSON.stringify(item), this.httpOptions)
+
+
+
+		const mappedItem = {
+			...item,
+			agency: {
+				id: item.agencyId
+			}
+		}
+		return this.http.post<Accommodation>(this.basePath, JSON.stringify(mappedItem), this.httpOptions)
 			.pipe(
 				retry(2),
 				catchError(this.handleError));

@@ -7,6 +7,10 @@ import * as _ from "lodash";
 import { Payment } from "../../model/payment";
 import { PaymentsService } from "../../services/payments.service";
 import { PlanesService } from 'src/app/planes/services/planes.service';
+import {TravelersService} from "../../../travelers/services/travelers.service";
+import {TransportsService} from "../../../transports/services/transports.service";
+import {ToursService} from "../../../tours/services/tours.service";
+import {AccommodationsService} from "../../../accommodations/services/accommodations.service";
 
 @Component({
 	selector: 'app-payment',
@@ -14,10 +18,11 @@ import { PlanesService } from 'src/app/planes/services/planes.service';
 	styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit, AfterViewInit {
-	plans: any = [];
+	planes: any = [];
+  travelers : any =[];
 	paymentData: Payment;
 	dataSource: MatTableDataSource<any>;
-	displayedColumns: string[] = ['id', 'plan', 'description', 'discount', 'actions'];
+	displayedColumns: string[] = ['id', 'planId', 'travelerId', 'price', 'actions'];
 	@ViewChild('paymentForm', { static: false })
 	paymentForm!: NgForm;
 
@@ -28,7 +33,8 @@ export class PaymentComponent implements OnInit, AfterViewInit {
 	sort!: MatSort;
 
 	isEditMode = false;
-	constructor(private paymentsService: PaymentsService, private planesService: PlanesService) {
+
+	constructor(private paymentsService: PaymentsService, private planesService: PlanesService , private  travelersService : TravelersService,private transportsService: TransportsService, private accommodationsService: AccommodationsService, private toursService: ToursService) {
 		this.paymentData = {} as Payment;
 		this.dataSource = new MatTableDataSource<any>();
 	}
@@ -37,8 +43,11 @@ export class PaymentComponent implements OnInit, AfterViewInit {
 		this.dataSource.paginator = this.paginator;
 		this.getAllPayments();
 		this.planesService.getAll().subscribe((response: any) => {
-			this.plans = response;
+			this.planes = response.content;
 		})
+    this.travelersService.getAll().subscribe((response: any) => {
+      this.travelers = response.content;
+    })
 	}
 
 	ngAfterViewInit() {
@@ -47,9 +56,8 @@ export class PaymentComponent implements OnInit, AfterViewInit {
 
 	getAllPayments() {
 		this.paymentsService.getAll().subscribe((response: any) => {
-			this.dataSource.data = response;
-		}
-		);
+			this.dataSource.data = response.content;
+		});
 	}
 
 	editItem(element: Payment) {
@@ -70,8 +78,30 @@ export class PaymentComponent implements OnInit, AfterViewInit {
 		});
 		console.log(this.dataSource.data);
 	}
-	addPayment() {
-		this.paymentData.id = 0;
+  addPayment() {
+    // this.paymentData.price = 0;
+    //
+    // await this.planesService.getById(this.paymentData.planId).subscribe(async (response: any) => {
+    //
+    //   let amounts:any  = {
+    //     transport: 0,
+    //     accommodation: 0,
+    //     tour: 0
+    //   }
+    //   await this.transportsService.getById(response.transportId).subscribe((transport: any) => {
+    //     amounts.transport = transport.price;
+    //   });
+    //   await this.accommodationsService.getById(response.accommodationId).subscribe((accommodation: any) => {
+    //     amounts.accommodation = accommodation.price;
+    //   });
+    //   await this.toursService.getById(response.tourId).subscribe((tour: any) => {
+    //     amounts.tour = tour.price;
+    //   });
+    //
+    //   console.log(amounts)
+    //
+    // })
+
 		this.paymentsService.create(this.paymentData).subscribe((response: any) => {
 			this.dataSource.data.push({ ...response });
 			this.dataSource.data = this.dataSource.data.map((o: any) => { return o; });

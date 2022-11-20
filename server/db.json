@@ -35,11 +35,11 @@
       "id": 1
     },
     {
-      "firstName": "Omar",
-      "lastName": "Guerrero",
-      "age": 21,
-      "email": "omar_guerrero@hotmail.com",
-      "phone": 2193812389,
+      "firstName": "FEF",
+      "lastName": "EFEF",
+      "age": 1,
+      "email": "FEF",
+      "phone": 3,
       "id": 2
     },
     {
@@ -63,11 +63,11 @@
     {
       "name": "Costa Azul",
       "description": "Tour Playero",
-      "service": "html",
+      "service": "Grupo",
       "nameCity": "Piura",
       "nameCountry": "Peru",
-      "startDate": "2022-09-04T05:00:00.000Z",
-      "endDate": "2022-09-14T05:00:00.000Z",
+      "startDate": 15,
+      "endDate": 18,
       "price": 150,
       "id": 2,
       "agency": {
@@ -88,14 +88,6 @@
       "email": "perusac@hotmail.com",
       "phone": 987456321,
       "id": 1
-    },
-    {
-      "name": "Lifetravel",
-      "location": "Av. Jiron Union 13",
-      "ruc": 1134231231,
-      "email": "lifetravel@agency.com",
-      "phone": 124124124124,
-      "id": 2
     }
   ]
 }

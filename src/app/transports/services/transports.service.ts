@@ -2,23 +2,24 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { catchError, Observable, retry, throwError } from "rxjs";
 import { Transport } from "../model/transport";
+import * as moment from "moment";
+import BASE_URL from 'common/http';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class TransportsService {
 
-	// Transports Endpoint
-	basePath = 'http://localhost:8080/api/v1/transports';
+	
+	basePath = `${BASE_URL}/api/v1/transports`;
 
 	httpOptions = {
 		headers: new HttpHeaders({
 			'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
+			'Access-Control-Allow-Origin': '*',
 		})
 	}
 	constructor(private http: HttpClient) { }
-
 	// API Error Handling
 	handleError(error: HttpErrorResponse) {
 		if (error.error instanceof ErrorEvent) {
@@ -36,7 +37,20 @@ export class TransportsService {
 
 	// Create Transport
 	create(item: any): Observable<Transport> {
-		return this.http.post<Transport>(this.basePath, JSON.stringify(item), this.httpOptions)
+
+		const transport = {
+			type: item.type,
+			seats: item.seats,
+			departureDate: moment(item.departureDate).format('YYYY-MM-DD'),
+			returnDate: moment(item.returnDate).format('YYYY-MM-DD'),
+			price: item.price,
+			agency: {
+				id: item.agencyId
+			},
+			available: "true"
+		}
+
+		return this.http.post<Transport>(this.basePath, JSON.stringify(transport), this.httpOptions)
 			.pipe(
 				retry(2),
 				catchError(this.handleError));

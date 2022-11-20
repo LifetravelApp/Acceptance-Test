@@ -69,7 +69,7 @@
       <td mat-cell *matCellDef="let element">{{ element.email }}</td>
     </ng-container>
 
-    <ng-container matColumnDef="transports">
+    <ng-container matColumnDef="extra">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Extra</th>
       <td mat-cell *matCellDef="let element">
         <app-confirm-dialog [data]="element" type="agency"></app-confirm-dialog>
